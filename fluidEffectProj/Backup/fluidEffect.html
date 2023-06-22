@@ -1,0 +1,168 @@
+<!--------------------------------------------------------------------------->
+<!--                           INTRODUCTION                                
+
+ The Code Project article submission template (HTML version)
+
+Using this template will help us post your article sooner. To use, just 
+follow the 3 easy steps below:
+ 
+     1. Fill in the article description details
+     2. Add links to your images and downloads
+     3. Include the main article text
+
+That's all there is to it! All formatting will be done by our submission
+scripts and style sheets. 
+
+-->
+<!--------------------------------------------------------------------------->
+<!--                        IGNORE THIS SECTION                            -->
+<html>
+	<head>
+		<title>The Code Project</title>
+		<Style> BODY { FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif }
+	P { FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif }
+	TD { FONT-SIZE: 10pt; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif }
+	H2 { FONT-WEIGHT: bold; COLOR: #ff9900 }
+	H3 { FONT-WEIGHT: bold; COLOR: #ff9900 }
+	H4 { FONT-WEIGHT: bold; COLOR: #ff9900 }
+	H5 { FONT-WEIGHT: bold; COLOR: #ff9900 }
+	H2 { FONT-SIZE: 13pt }
+	H3 { FONT-SIZE: 12pt }
+	H4 { FONT-SIZE: 10pt; COLOR: black }
+	PRE { FONT-FAMILY: "Courier New", Courier, mono; WHITE-SPACE: pre; BACKGROUND-COLOR: #fbedbb }
+	CODE { COLOR: #990000; FONT-FAMILY: "Courier New", Courier, mono }
+	</Style>
+		<link rel="stylesheet" type="text/css" href="http://www.codeproject.com/styles/global.css">
+	</head>
+	<body bgcolor="#ffffff" color="#000000">
+		<!--------------------------------------------------------------------------->
+		<!-------------------------------     STEP 1      --------------------------->
+		<!--  Fill in the details (CodeProject will reformat this section for you) -->
+		<pre>
+Title:       Finally a VB.NET Fluid Effect Image box! (ripple / water / splash)
+Author:      Don Pattee
+Email:       <A href="mailto:x-caiver@x-caiver.com">x-caiver@x-caiver.com</A>
+Environment:VB.NET, Windows XP 
+Keywords: Control, Fluid, Water, Ripple, Splash, Effect
+Level:       Intermediate
+Description: An article on a VB.NET ripple image control
+Section      VB.NET
+SubSection   Controls
+</pre>
+		<!-------------------------------     STEP 2      --------------------------->
+		<!--  Include download and sample image information.                       -->
+		<ul class="download">
+			<li>
+				<a href="fluidEffectDemo.zip">Download demo project - 48 Kb </a>
+			<li>
+				<a href="fluidEffectSrc.zip">Download source - 100 Kb</a></li>
+		</ul>
+		<p><img src="fluidEffect.jpg" alt="fluidEffect Demo Image" width="300" height="100"></p>
+		<!-------------------------------     STEP 3      --------------------------->
+		<!--  Add the article text. Please use simple formatting (<h2>, <p> etc)   -->
+		<h2>Introduction</h2>
+		<p>
+		Add a splash to your splash screen - literally!
+		<P>Finally&nbsp;a VB.NET implementation of the classic ripple / water / splash / 
+			fluid effect! This is a port and a enhancement of Christian Tratz's C# 
+			implementation.
+			<h2>Background (optional)</h2>
+		<p>
+		Even VB.NET users should be able to have awesome effects. There are many fluid 
+		effect routines out there, most in C. This is a VB.NET port of the C# 
+		implementation. I've also opened up a few more properties so you can have 
+		greater control over the effect programatically. You can make some really neat 
+		looks by fiddling with the parameters - make your image appear to be rubber, 
+		or&nbsp;under an oil surface,&nbsp;or&nbsp;use regular old water physics. Just 
+		check out the sample app and the documentation in the code itself.
+		<P>See <A href="http://www.x-caiver.com/Software">http://www.x-caiver.com/Software</A>
+			for additional versions.
+			<h2>Using the code</h2>
+		<p>In just a few steps you will be set up:
+			<OL>
+				<LI>
+				Add fluidEffect.vb to your project
+				<LI>
+				On your form, add a Panel object. Position/size/name appropriately.&nbsp;Don't 
+				add a graphic to it yet.
+				<LI>
+				Save your form, then switch to the Code View and close the Designer View.
+				<LI>
+					Search for the Panel name, make sure 'Search hidden text' option is selected. 
+					There are two instances you are looking for. Both are within the "Windows Form 
+					Designer generated code" region. The 2 examples below assume you named your 
+					panel myFluidPanel.
+					<UL>
+						<LI>
+							Watch out, VS.NET likes to change the two lines to be 
+							&lt;yournamespace&gt;.fluidEffect.fluidEffectControl and then the Designer gets 
+							confused, and won't display it at all until you go back to the Code and fix it.</LI></UL>
+				</LI>
+			</OL>
+			<pre>
+'This was the original line. Comment it out and add the line below
+'Friend WithEvents myFluidPanel As System.Windows.Forms.Panel
+Friend WithEvents myFluidPanel As fluidEffect.fluidEffectControl</pre>
+			<pre>
+'This was the original line. Comment it out and add the line below
+'Me.myFluidPanel = New System.Windows.Forms.Panel()
+Me.myFluidPanel = New fluidEffect.fluidEffectControl()</pre>
+			<OL>
+				<LI value="5">
+				Save again. Now you can open up the form in Designer View
+				<LI>
+				Select your panel (now a fluidEffect), and scroll to the "Misc" section of its 
+				property sheet, and set the ImageBitmap entry to your bitmap. (the fluidEffect 
+				only works with bitmaps for now. it will display a jpg (or any format a Panel 
+				can show) in the Designer but won't work when you try to run it)
+				<LI>
+					Configure any of the other settings that you want, Save, and you're done!</LI></OL>
+		<P>Settings you can change:</P>
+		<code>ImageBitmap</code> - this is the image displayed. Bitmaps only for now<br>
+		<code>dropHeight</code> - larger values make the initial drops higher<br>
+		<code>dropRadius</code> - larger values make the radius of the initial ripple 
+		larger<br>
+		<code>Dampener</code> - larger values let the ripples last longer. 4 is normal. 
+		2 &amp; 1 make the fluid very thick so the ripples die fast. A value of 0 has 
+		basically no ripples<br>
+		<code>TheScale</code> - Value of 0 is a ripple bitmap the same size as the 
+		image, value 1 is half the size, etc. Larger values are useful if you have a 
+		big image to make the processing take less time. Also if you scale the image on 
+		your form you should try values 1 and up to get the drops to be correctly 
+		located in relation to the mouse<br>
+		<code>StopRipples</code> - This value should be set to False for normal use. 
+		Setting it to True will freeze the ripples. Clicking on the image again will 
+		start a new ripple, and un-freeze all the existing ripples.<br>
+		<P>
+			Gotchas:
+			<OL>
+				<LI>
+				Only works with bitmaps for now, but you can assign a jpg/icn/etc to the panel 
+				from the Designer View
+				<LI>
+				Gets bogged down quickly with larger images. A 500x400 image of mine could only 
+				get ~ 2 fps with the settings I had selected
+				<LI>
+				There are error cases that aren't trapped yet. Launch the demo app, and click a 
+				lot, quickly, and you will crash the app. (I was able to get 30 drops going at 
+				once clicking slowly, but if I clicked quickly I could crash the app after 5 
+				drops)
+				<LI>
+					When 2 &amp; 3 are addressed I will reactivate the drag event handler. This 
+					lets you "draw" on the water, like running your finger over the water.</LI></OL>
+			<h2>Points of Interest</h2>
+		<p>VB.NET is not the mathematical, memory swapping powerhouse that C# is. This code 
+			bogs down quickly under load. One of my apps has a 500 x 400 pixel splash 
+			screen, with transparent sections. I wasn't able to get good framerates out of 
+			it. Smaller images work great though. I selected an interesting spot in one of 
+			my splash screens that is only 100x100, and it can ripple in realtime.
+			<h2>History</h2>
+		<p>
+		2/18/2003 - Completed VB.NET port &amp; added some configurable properties.
+		<P>
+		2/20/2003 - Made demo app for CodeProject, woo hoo
+		<P>2/21/2003 - VS.NET 2003's VB.NET has native bitshift operators. I'll post a 
+			version that reverts to using inline bitshifting, instead of the bitshift 
+			function that is used in the VS.NET 2003 version posted here, on my website.</P>
+	</body>
+</html>
